@@ -49,23 +49,7 @@ go run main.go
 ```
 
 ## API Endpoints
-### Insert User
-**POST** `/users`
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com"
-}
-```
-
-### Update User
-**PUT** `/users/{id}`
-```json
-{
-  "name": "Updated Name",
-  "email": "updated@example.com"
-}
-```
+Once the server is up, visit [http://localhost:8080/swagger/](http://localhost:8080/swagger/)
 
 ### Error Handling
 - `400 Bad Request`: Invalid request format.

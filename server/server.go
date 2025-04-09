@@ -5,8 +5,10 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	_ "github.com/hi-im-yan/crud-with-go/docs"
 	"github.com/hi-im-yan/crud-with-go/handlers"
 	"github.com/jackc/pgx/v5/pgxpool"
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 type Server struct {
@@ -29,6 +31,8 @@ func NewServer(port string, db *pgxpool.Pool) *Server {
 	ih := handlers.NewIndexHandler()
 	s.Router.HandleFunc("GET /", handlers.ApiHandlerAdapter(ih.HealthCheck))
 
+	// Swagger Route
+	s.Router.HandleFunc("GET /swagger/*", httpSwagger.WrapHandler)
 	// User Routes
 	uh := handlers.NewUserHandler(s.DB)
 	s.Router.Mount("/users", uh.UserRouter())

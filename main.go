@@ -12,8 +12,12 @@ import (
 	"github.com/hi-im-yan/crud-with-go/server"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/joho/godotenv"
+	_ "github.com/hi-im-yan/crud-with-go/docs"
 )
 
+//	@title			CRUD with Go API
+//	@version		1.0
+//	@description	Simple CRUD API using Go and PostgreSQL
 func main() {
 	db := connectDB()
 	defer db.Close()
