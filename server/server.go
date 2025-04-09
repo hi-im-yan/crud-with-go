@@ -30,7 +30,7 @@ func NewServer(port string, db *pgxpool.Pool) *Server {
 	s.Router.HandleFunc("GET /", handlers.ApiHandlerAdapter(ih.HealthCheck))
 
 	// User Routes
-	uh := handlers.NewUserHandler()
+	uh := handlers.NewUserHandler(s.DB)
 	s.Router.Mount("/users", uh.UserRouter())
 
 	return s
