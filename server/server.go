@@ -6,17 +6,20 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/hi-im-yan/crud-with-go/handlers"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Server struct {
 	Port   string
 	Router *chi.Mux
+	DB     *pgxpool.Pool
 }
 
-func NewServer(port string) *Server {
+func NewServer(port string, db *pgxpool.Pool) *Server {
 	s := &Server{
 		Port:   port,
 		Router: chi.NewRouter(),
+		DB:     db,
 	}
 
 	s.Router.Use(middleware.Logger)
